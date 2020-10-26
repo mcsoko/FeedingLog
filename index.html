@@ -29,7 +29,7 @@
             // add content type header to object
             myHeaders.append("Content-Type", "application/json");
             // using built in JSON utility package turn object to string and store in a variable
-            var raw = JSON.stringify({"Name":name,"Amount":amount,"Time":time});
+            var raw = JSON.stringify({"name":name,"amount":amount,"time":time});
             // create a JSON object with parameters for API call and store in a variable
             var requestOptions = {
                 method: 'POST',
