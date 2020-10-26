@@ -43,6 +43,15 @@
             .then(result => alert(JSON.parse(result).body))
             .catch(error => console.log('error', error));
         }
+        var readAPI = ()=>{
+            var readOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            fetch("https://hftmr9itpe.execute-api.us-west-2.amazonaws.com/dev", readOptions)    
+        }
     </script>
 </head>
 <body>
