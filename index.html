@@ -43,28 +43,6 @@
             .then(result => alert(JSON.parse(result).body))
             .catch(error => console.log('error', error));
         }
-        
-
-            fetch('https://hftmr9itpe.execute-api.us-west-2.amazonaws.com/dev').then(function (response) {
-                // The API call was successful!
-                return response.json();
-            }).then(function (data) {
-                // This is the JSON from our response
-                console.log(data);
-                appendData(data);
-            }).catch(function (err) {
-                // There was an error
-                console.warn('Something went wrong.', err);
-            });
-            function appendData(data) {
-            var mainContainer = document.getElementById("myData");
-            for (var i = 0; i < data.length; i++) {
-                var div = document.createElement("div");
-                div.innerHTML = 'Name: ' + data[i].firstName + ' ' + data[i].lastName;
-                mainContainer.appendChild(div);
-            }
-        }
-        
     </script>
 
 </head>
@@ -81,5 +59,27 @@
     </form>
     <h2>Make a table based on JSON data.</h2>
     <div id="myData"></div>
+    <script>
+                 fetch('https://hftmr9itpe.execute-api.us-west-2.amazonaws.com/dev').then(function (response) {
+                // The API call was successful!
+                return response.json();
+            }).then(function (data) {
+                // This is the JSON from our response
+                console.log(data);
+                appendData(data);
+            }).catch(function (err) {
+                // There was an error
+                console.warn('Something went wrong.', err);
+            });
+            function appendData(data) {
+                console.log("got here");
+            var mainContainer = document.getElementById("myData");
+            for (var i = 0; i < data.length; i++) {
+                var div = document.createElement("div");
+                div.innerHTML = 'Name: ' + data[i].firstName + ' ' + data[i].lastName;
+                mainContainer.appendChild(div);
+            }
+        }
+    </script>
 </body>
 </html>
