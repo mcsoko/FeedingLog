@@ -60,26 +60,21 @@
     <h2>Make a table based on JSON data.</h2>
     <div id="myData"></div>
     <script>
-                 fetch('https://hftmr9itpe.execute-api.us-west-2.amazonaws.com/dev').then(function (response) {
-                // The API call was successful!
-                return response.json();
-            }).then(function (data) {
-                // This is the JSON from our response
-                console.log(data);
-                appendData(data);
-            }).catch(function (err) {
-                // There was an error
-                console.warn('Something went wrong.', err);
-            });
-            function appendData(data) {
-                console.log("got here");
-            var mainContainer = document.getElementById("myData");
-            for (var i = 0; i < data.length; i++) {
-                var div = document.createElement("div");
-                div.innerHTML = 'Name: ' + data[i].name + 'Amount' + data[i].amount + 'Time' + data[i].time;
-                mainContainer.appendChild(div);
-            }
+        var keys = [];
+
+        document.write("<table border==\"1\"><tr>");
+        for (key in data[0]) {
+            document.write('<td>' + key + '</td>');
         }
+        document.write("</tr>");
+        for (var i = 0; i < data.length; i++) {
+            document.write('<tr>');
+            for (key in data[i]) {
+            document.write('<td>' + data[i][key] + '</td>');
+        }
+            document.write('</tr>');
+        }
+        document.write("</table>");
     </script>
 </body>
 </html>
