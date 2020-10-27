@@ -43,6 +43,60 @@
             .then(result => alert(JSON.parse(result).body))
             .catch(error => console.log('error', error));
         }
+
+        function JSONToHTMLTable(data, json) {           
+
+        //This Code gets all columns for header   and stored in array col
+        var col = [];
+        for (var i = 0; i < data.length; i++) {
+            for (var key in data[i]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+            }
+        }
+
+        //This Code creates HTML table
+        var table = document.createElement("table");
+
+        //This Code getsrows for header creader above.
+        var tr = table.insertRow(-1);
+
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+
+        //This Code adds data to table as rows
+        for (var i = 0; i < data.length; i++) {
+
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = data[i][col[j]];
+            }
+        }
+
+        //This Code gets the all columns for header
+        var divContainer = document.getElementById(json);
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+        }
+
+            fetch('https://hftmr9itpe.execute-api.us-west-2.amazonaws.com/dev').then(function (response) {
+                // The API call was successful!
+                return response.json();
+            }).then(function (data) {
+                // This is the JSON from our response
+                console.log(data);
+                document.getElementById("json").textContent = JSON.stringify(data, undefined, 2);
+            }).catch(function (err) {
+                // There was an error
+                console.warn('Something went wrong.', err);
+            });
+        
     </script>
 </head>
 <body>
@@ -56,5 +110,6 @@
         <!-- set button onClick method to call function we defined passing input values as parameters -->
         <button type="button" onclick="callAPI(document.getElementById('name').value,document.getElementById('amount').value,document.getElementById('time').value)">Call API</button>
     </form>
+    <pre id="json"></pre>
 </body>
 </html>
