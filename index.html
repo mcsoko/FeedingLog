@@ -50,6 +50,7 @@
             }).then(function (data) {
                 // This is the JSON from our response
                 console.log(data);
+                document.getElementById("json").textContent = JSON.stringify(data, undefined, 2);
             }).catch(function (err) {
                 // There was an error
                 console.warn('Something went wrong.', err);
@@ -68,5 +69,6 @@
         <!-- set button onClick method to call function we defined passing input values as parameters -->
         <button type="button" onclick="callAPI(document.getElementById('name').value,document.getElementById('amount').value,document.getElementById('time').value)">Call API</button>
     </form>
+    <pre id="json"></pre>
 </body>
 </html>
